@@ -1,93 +1,91 @@
-# Sistema de Agencia de Viajes
+# Sistema de reservas hoteleras
 
-![commits](https://badgen.net/github/commits/clubdecomputacion/lpa1-taller-requerimientos?icon=github) 
-![last_commit](https://img.shields.io/github/last-commit/clubdecomputacion/lpa1-taller-requerimientos)
+Aplicación de consola en Python para consultar hoteles, buscar habitaciones y
+administrar reservas de acuerdo con las necesidades descritas en
+[`docs/entrevista.pdf`](./docs/entrevista.pdf).
 
-- ver [badgen](https://badgen.net/) o [shields](https://shields.io/) para otros tipos de _badges_
+## Funcionalidades
 
-## Autor
+- Registrar hoteles y habitaciones con información de contacto, ubicación,
+  servicios, capacidad, precio y fotos.
+- Buscar disponibilidad por fechas, ubicación, número de huéspedes, calificación
+  mínima y precio máximo por noche.
+- Calcular precios por huésped y noche, con tarifas de temporada y ofertas.
+- Configurar políticas de cancelación por tipo de habitación y temporada.
+- Registrar clientes, crear reservas y consultar o cancelar estancias.
+- Calcular el reembolso aplicable según la política de cancelación del hotel.
+- Desactivar temporalmente hoteles o habitaciones y programar cierres de
+  habitaciones por mantenimiento u otros motivos.
+- Registrar comentarios y calificaciones después de la estancia; mostrar los
+  promedios del hotel y de cada habitación.
+- Guardar los datos en un archivo JSON local para conservarlos entre ejecuciones.
 
-- [@estudiante](https://www.github.com/estudiante)
+Los hoteles y habitaciones de demostración se cargan cuando se inicia la
+aplicación por primera vez. Los datos se guardan en `data/reservas.json`, que no
+se incluye en Git.
 
-## Descripción del Proyecto
+## Requerimientos
 
-TODO: Corregir la descripción - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut quam dolor. Quisque elementum est sed massa gravida convallis. Donec volutpat turpis eget lectus feugiat congue. Morbi rutrum auctor eleifend. Etiam iaculis libero tellus, vel aliquet erat tempor sed. Duis efficitur quam vel sapien luctus, sed semper lacus mollis. Suspendisse non nunc eleifend, aliquet elit eget, condimentum augue.
+La lista completa de requerimientos funcionales y sus reglas de negocio está en
+[`docs/requerimientos.md`](./docs/requerimientos.md). El modelo de clases está
+en [`docs/diagrama_clases.mmd`](./docs/diagrama_clases.mmd).
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vel nibh fringilla, porta elit vel, consequat libero. Nulla et libero ac nulla ultricies sollicitudin. Sed viverra non nulla id convallis. Morbi vel varius lacus, in maximus nunc. Praesent sed semper diam. Pellentesque vehicula nulla augue, ut porta dolor consequat at.
+## Tecnologías
 
-## Documentación
-
-Revisar la documentación en [`./docs`](./docs)
-
-### Requerimientos
-
-TODO: Corregir la lista de requerimientos:
-- **R1**: El sistema debe ...
-- **R2**: El sistema debe ...
-<br>...<br>
-- **Rn**: El sistema debe ...
-- **Rm**: El sistema debe ...
-
-### Diseño
-
-TODO: Crear el diagrama de clases:
-
-![Diagrama de Clases](./docs/diagramas.png)
-
-
-### Tárifas
-
-|destino|pasajes|silver|gold|platinum|
-|:---|---:|---:|---:|---:|
-|Aruba|418|134|167|191|
-|Bahamas|423|112|183|202|
-|Cancún|350|105|142|187|
-|Hawaii|858|210|247|291|
-|Jamaica|380|115|134|161|
-|Madrid|496|190|230|270|
-|Miami|334|122|151|183|
-|Moscu|634|131|153|167|
-|NewYork|495|104|112|210|
-|Panamá|315|119|138|175|
-|Paris|512|210|260|290|
-|Rome|478|184|220|250|
-|Seul|967|205|245|265|
-|Sidney|1045|170|199|230|
-|Taipei|912|220|245|298|
-|Tokio|989|189|231|255|
+- Python 3.10 o posterior
+- [Rich](https://github.com/Textualize/rich) para la interfaz de consola
+- `unittest` para las pruebas automatizadas
 
 ## Instalación
 
-TODO: Corregir la explicación de la instalación - Morbi quam lectus, tempus sit amet mi non, facilisis dignissim erat. Aenean tortor libero, rhoncus eu eleifend ut, volutpat id nisi. Ut porta eros at ante rutrum pharetra. Integer nec nulla dictum, vestibulum ligula id, hendrerit ex. Morbi eget tortor metus.
+Clona el repositorio y crea un entorno virtual:
 
-1. Clonar el proyecto
+```bash
+git clone https://github.com/clubdecomputacion/lpa1-taller-requerimientos.git
+cd lpa1-taller-requerimientos
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-    ```bash
-    git clone https://github.com/clubdecomputacion/lpa1-taller-requerimientos.git
-    ```
+En Windows PowerShell, activa el entorno con:
 
-2. Crear y activar entorno virtual
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-    ```bash
-    cd lpa1-taller-requerimientos
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+Instala las dependencias:
 
-3. Instalar librerías y dependencias
+```bash
+python -m pip install -r requirements.txt
+```
 
-    ```bash
-    pip install -r requirements.txt
-    ```
-    
 ## Ejecución
 
-TODO: Corregir la explicación de la ejecución - Maecenas sed lorem at arcu varius mollis. Sed eleifend nulla ut blandit interdum. Donec sollicitudin nunc at orci facilisis dignissim. Donec at arcu luctus, commodo magna eget, blandit leo.
+Con el entorno virtual activo, ejecuta:
 
-1. Ejecutar el proyecto
+```bash
+python app.py
+```
 
-    ```bash
-    cd lpa1-taller-requerimientos
-    python3 app.py
-    ```
+Usa las opciones del menú para buscar y reservar habitaciones, consultar o
+cancelar reservas, agregar reseñas y administrar hoteles, temporadas y cierres.
+Las fechas se ingresan en formato `AAAA-MM-DD`; la fecha de salida no se cuenta
+como noche ocupada.
 
+## Precios, cancelaciones y pagos
+
+El precio base de cada habitación se expresa por huésped y por noche. Al cotizar,
+se aplican el multiplicador de temporada y el mayor descuento disponible para
+cada noche. La capacidad de la habitación limita el número de huéspedes.
+
+El sistema calcula el reembolso usando los días de anticipación y la penalidad
+configurados para el hotel. Es un cálculo informativo: la aplicación no cobra,
+transfiere ni devuelve dinero y no se integra con una pasarela de pagos.
+
+## Pruebas
+
+Desde la raíz del repositorio, ejecuta:
+
+```bash
+python -m unittest discover -s tests -v
+```

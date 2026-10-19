@@ -1,0 +1,131 @@
+classDiagram
+    class Hotel {
+        +id: str
+        +name: str
+        +address: str
+        +phone: str
+        +email: str
+        +location: str
+        +description: str
+        +services: list
+        +photos: list
+        +active: bool
+        +payment_policy: str
+        +cancellation_policy: str
+        +free_cancellation_days: int
+        +late_cancellation_fee_percent: float
+    }
+
+    class Room {
+        +id: str
+        +hotel_id: str
+        +name: str
+        +room_type: str
+        +description: str
+        +nightly_rate: float
+        +capacity: int
+        +services: list
+        +photos: list
+        +active: bool
+    }
+
+    class Customer {
+        +id: str
+        +full_name: str
+        +phone: str
+        +email: str
+        +address: str
+    }
+
+    class Booking {
+        +id: str
+        +customer_id: str
+        +room_id: str
+        +check_in: date
+        +check_out: date
+        +guests: int
+        +total_price: float
+        +status: str
+        +refund_amount: float
+        +created_at: datetime
+    }
+
+    class SeasonalRate {
+        +id: str
+        +hotel_id: str
+        +name: str
+        +start_date: date
+        +end_date: date
+        +multiplier: float
+    }
+
+    class Offer {
+        +id: str
+        +hotel_id: str
+        +name: str
+        +start_date: date
+        +end_date: date
+        +discount_percent: float
+        +description: str
+    }
+
+    class CancellationRule {
+        +id: str
+        +hotel_id: str
+        +name: str
+        +room_type: str
+        +start_date: date
+        +end_date: date
+        +free_cancellation_days: int
+        +late_cancellation_fee_percent: float
+    }
+
+    class RoomClosure {
+        +id: str
+        +room_id: str
+        +start_date: date
+        +end_date: date
+        +reason: str
+    }
+
+    class Review {
+        +id: str
+        +booking_id: str
+        +hotel_id: str
+        +room_id: str
+        +customer_id: str
+        +rating: int
+        +comment: str
+        +created_at: datetime
+    }
+
+    class BookingSystem {
+        +register_hotel()
+        +add_room()
+        +register_customer()
+        +search_rooms()
+        +quote()
+        +create_booking()
+        +cancel_booking()
+        +close_room()
+        +add_review()
+        +add_seasonal_rate()
+        +add_offer()
+    }
+
+    Hotel "1" --> "0..*" Room : administra
+    Hotel "1" --> "0..*" SeasonalRate : define
+    Hotel "1" --> "0..*" Offer : publica
+    Hotel "1" --> "0..*" CancellationRule : configura
+    Room "1" --> "0..*" RoomClosure : puede tener
+    Customer "1" --> "0..*" Booking : realiza
+    Room "1" --> "0..*" Booking : se reserva en
+    Booking "1" --> "0..1" Review : recibe
+    Customer "1" --> "0..*" Review : escribe
+    Hotel "1" --> "0..*" Review : calificación
+    Room "1" --> "0..*" Review : calificación
+    BookingSystem ..> Hotel : gestiona
+    BookingSystem ..> Room : gestiona
+    BookingSystem ..> Customer : gestiona
+    BookingSystem ..> Booking : gestiona
+    BookingSystem ..> Review : gestiona
